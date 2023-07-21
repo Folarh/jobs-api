@@ -1,4 +1,4 @@
-require("dotenv").config;
+require("dotenv").config();
 const express = require("express");
 const app = express();
 
@@ -18,18 +18,18 @@ app.use(express.json());
 //other packages
 
 //routes
-app.use("api/v1/auth", authRouter);
-app.use("api/v1/jobs", jobsRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/jobs", jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.Port || 8000;
+const port = process.env.Port || 5000;
 
 const start = async () => {
   try {
     //connect to database
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(process.env.MONGO);
     app.listen(port, console.log(`listening on port ${port}...`));
   } catch (error) {
     console.log(error);
